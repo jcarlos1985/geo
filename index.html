@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Geo</title>
+        
+        <script type="text/javascript" charset="utf-8" src="phonegap-3.4.0.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            // Espere a que PhoneGap se inicie
+            //
+            document.addEventListener("deviceready", onDeviceReady, false);
+            
+            // PhoneGap está listo
+            //
+            function onDeviceReady() {
+                navigator.geolocation.getCurrentPosition(onSuccess, onError);
+            }
+            
+            // onSuccess Geolocation
+            //
+            function onSuccess(position) {
+                var element = document.getElementById('geolocation');
+                element.innerHTML = '<a href="http://maps.google.es/?q=' + position.coords.latitude + '%20' + position.coords.longitude + '">Ir a la posición</a>';
+            }
+            
+            // La función 'callback' onError recibe un objeto 'PositionError'.
+            //
+            function onError(error) {
+                alert('código: ' + error.code + '\n' +
+                      'mensaje: ' + error.message + '\n');
+            }
+        </script>
+    </head>
+    <body>
+        <p id="geolocation">Buscando geolocalización...</p>
+    </body>
+</html>
